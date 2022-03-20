@@ -1,13 +1,20 @@
-def partitionDataIntoChunks(data, chunk_size):
+def partitionDataIntoNChunks(data, n):
     """
-        Partition data into chunks of size chunk_size.
+        Partition data into chunks of size n.
         Parameters:
             data [list]: list of data
-            chunk_size [int]: size of each chunk
+            n [int]: number of chunks
         Returns:
-            list of chunks partitioned into chunks of size chunk_size. Last chunk may be smaller than chunk_size.
+            list of chunks partitioned into chunks of size n. Last chunk may be larger than the rest.
     """
-    return [data[x:x+chunk_size] for x in range(0, len(data), chunk_size)]
+    partitions = list()
+    chunk_size = int(len(data) / n)
+    partitions = [data[i:i + chunk_size] for i in range(0, len(data), chunk_size)]
+
+    if len(partitions) > n:
+        partitions[-2] += partitions[-1]
+        partitions.pop()
+    return partitions
 
 def flatten2DList(data):
     """

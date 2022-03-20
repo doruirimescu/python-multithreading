@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from utils import partitionDataIntoChunks, flatten2DList
+from utils import partitionDataIntoNChunks, flatten2DList
 import time
 import threading
 
@@ -20,17 +20,28 @@ class Thread(threading.Thread):
         self.id=id
 
     def run(self):
+        print("Thread {id} started".format(id=self.id))
         for argument in self.argument_list:
             if self.id is not None:
-                print("Thread {id} started".format(id=self.id))
+                print("Thread {id} working".format(id=self.id))
             result = self.function_to_execute(*argument)
             self.results_list.append(result)
+        print("Thread {id} ended".format(id=self.id))
 
     def getResults(self):
         return self.results_list
 
 class ThreadManager:
     def __init__(self, arguments, nThreads, functionToRun):
+        """
+            Constructor for ThreadManager class.
+            Parameters:
+                arguments [list[list]]: list of arguments(list) to be passed to function_to_execute
+                nThreads [int]: number of threads to be created
+                functionToRun [function]: function to be executed by thread
+            Returns:
+                ThreadManager object
+        """
         self._set_argumentsList(arguments)
         self._set_nThreads(nThreads)
         self._set_functionToRun(functionToRun)
@@ -47,7 +58,7 @@ class ThreadManager:
 
     def _setThreads(self):
         self.threads = list()
-        arguments_per_thread = partitionDataIntoChunks(self.arguments, self.nThreads)
+        arguments_per_thread = partitionDataIntoNChunks(self.arguments, self.nThreads)
         id = 1
         for argument in arguments_per_thread:
             thread = Thread(argument, self.functionToRun, id)
