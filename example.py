@@ -1,5 +1,5 @@
 
-from multithreading import ThreadManager
+from python_multithreading.multithreading import ThreadManager
 
 def test_function(one_arg):
     print("Thread started", one_arg)

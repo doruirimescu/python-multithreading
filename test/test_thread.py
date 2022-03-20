@@ -1,5 +1,5 @@
 import unittest
-from multithreading import Thread
+from python_multithreading.multithreading import Thread
 
 class TestThread(unittest.TestCase):
     def test_constructor(self):

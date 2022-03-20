@@ -1,5 +1,5 @@
 import unittest
-from multithreading import ThreadManager, Thread
+from python_multithreading.multithreading import ThreadManager, Thread
 
 
 class TestThreadManager(unittest.TestCase):

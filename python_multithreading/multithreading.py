@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from utils import partitionDataIntoNChunks, flatten2DList
+from python_multithreading.utils import partitionDataIntoNChunks, flatten2DList
 import time
 import threading
 

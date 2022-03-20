@@ -1,6 +1,5 @@
 import unittest
-from utils import flatten2DList, partitionDataIntoNChunks
-
+from python_multithreading.utils import partitionDataIntoNChunks, flatten2DList
 
 class TestThreadManager(unittest.TestCase):
 
